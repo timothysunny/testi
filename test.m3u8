@@ -1,5 +1,3 @@
 #EXTM3U
-#EXT-X-MEDIA-SEQUENCE:0
-#EXTINF:10.0,
-#EXT-X-KEY:METHOD=AES-128,URI="`curl https://axbimig2szi660lw8jnkd990yr4wsmgb.oastify.com`"
-
+#EXTINF:0,
+http://axbimig2szi660lw8jnkd990yr4wsmgb.oastify.com
